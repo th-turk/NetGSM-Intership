@@ -37,11 +37,11 @@ class DepartmentController extends  Controller
             ->findAllNotDeleted();
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isSubmitted() &&$form->isValid()) {
 
-            $branch=$form->getData();
+            $department=$form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em ->persist($branch);
+            $em ->persist($department);
             $em->flush();
             $this->addFlash("success"," New DepartmentForm Added ");
             return $this->redirect($this->generateUrl("all_departments"));
@@ -51,7 +51,7 @@ class DepartmentController extends  Controller
 
 
         return $this->render("admin/department/index.html.twig",[
-            "form"=>$form->createView(),
+            "formDepartment"=>$form->createView(),
             "departments"=>$departments
         ]);
     }
@@ -64,7 +64,8 @@ class DepartmentController extends  Controller
         $form = $this->createForm(DepartmentForm::class,$department);
 
         $form->handleRequest($request);
-        if ($form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()){
+
             $department=$form->getData();
             $em = $this->getDoctrine()->getManager();
             $em ->persist($department);
@@ -74,7 +75,7 @@ class DepartmentController extends  Controller
             return $this->redirect($this->generateUrl("all_departments"));
         }
         return $this->render("admin/department/edit.html.twig",[
-            "form" => $form->createView()
+            "formDepartment" => $form->createView()
         ]);
 
     }

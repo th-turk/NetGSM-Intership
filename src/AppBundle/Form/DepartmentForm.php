@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Entity\Department;
 
 class DepartmentForm extends AbstractType
 {
@@ -40,12 +41,15 @@ class DepartmentForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           "data_class"=>"AppBundle\Entity\Department"
+            "data_class"=>"AppBundle\Entity\Department",
+            "attr" =>[
+                "class" =>"well form-horizontal"
+            ]
         ]);
     }
 
     public function getBlockPrefix()
     {
-        return 'app_bundle_branch';
+        return 'branch_form';
     }
 }

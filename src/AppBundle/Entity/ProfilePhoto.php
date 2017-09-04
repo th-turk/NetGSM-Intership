@@ -2,21 +2,21 @@
 /**
  * Created by PhpStorm.
  * User: tahaturk25
- * Date: 24.8.2017
- * Time: 15:11
+ * Date: 4.9.2017
+ * Time: 12:53
  */
 
 namespace AppBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * @ORM\Entity
- * @ORM\Table(name="photos")
+ * @ORM\Table(name="profile_photo")
  */
-class Photos
+class ProfilePhoto
 {
     /**
      * @ORM\Id
@@ -25,8 +25,8 @@ class Photos
      */
     private  $id;
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee",inversedBy="photos")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Employee")
+     * @ORM\JoinColumn(name="employee",referencedColumnName="id")
      */
     private $employee;
 
@@ -35,6 +35,9 @@ class Photos
      */
     private $name;
 
+    /**
+     * @var string
+     */
     private $photo;
 
 
@@ -82,7 +85,7 @@ class Photos
 
     public function getUploadDir()
     {
-        return "uploads/photos";
+        return "uploads/profile_photos";
     }
 
     public function getAbsoluteRoot()
@@ -117,7 +120,4 @@ class Photos
 
 
     }
-
-      
-
 }

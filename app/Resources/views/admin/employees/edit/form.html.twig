@@ -4,6 +4,42 @@
         <!-- Form Name -->
         <legend><center><h2><b>Edit Employee </b></h2></center></legend>
 
+
+        {% if employee.photoName == null %}
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Photo</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-photo"></i></span>
+                        {{ form_row(employeeForm.photo) }}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+
+            <!-- Text input-->
+            <div class="form-group" style="padding-left: 8%">
+                <label class="col-md-4 control-label" ></label>
+                <div class="col-md-3 ">
+                    <a href="#" class="thumbnail">
+                        <img  style="max-height: 100%;max-width: 100%" src="{{ asset('uploads/profile_photos/'~ employee.photoName)}}" alt="">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Photo</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-photo"></i></span>
+                        {{ form_row(employeeForm.photo) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label">First Name</label>

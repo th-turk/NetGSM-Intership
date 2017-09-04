@@ -42,7 +42,7 @@ class Users implements UserInterface
     private $roles=[] ;
 
     /**
-     *@ORM\OneToOne(targetEntity="AppBundle\Entity\Employee")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Employee")
      * @ORM\JoinColumn(name="employee",referencedColumnName="id")
      */
     private $employee;

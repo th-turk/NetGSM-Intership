@@ -34,11 +34,11 @@ class DegreeController extends Controller
         $form = $this->createForm(DegreeForm::class);
 
         $degrees = $this->getDoctrine()
-            ->getRepository("AppBundle:Degree")
-            ->findAllNotDeleted();
+        ->getRepository("AppBundle:Degree")
+        ->findAllNotDeleted();
 
         $form->handleRequest($request);
-        if ( $form->isValid()){
+        if ( $form->isSubmitted() && $form->isValid()){
             $degree=$form->getData();
             $em = $this->getDoctrine()->getManager();
             $em ->persist($degree);
@@ -61,7 +61,7 @@ class DegreeController extends Controller
         $form = $this->createForm(DegreeForm::class,$degree);
         try{
             $form->handleRequest($request);
-            if ($form->isValid()){
+            if ($form->isSubmitted() &&$form->isValid()){
                 $degree=$form->getData();
                 $em = $this->getDoctrine()->getManager();
                 $em ->persist($degree);

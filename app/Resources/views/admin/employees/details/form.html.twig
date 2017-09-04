@@ -4,6 +4,29 @@
     <!-- Form Name -->
     <legend><center><h2><b>Employee Details </b></h2></center></legend>
 
+    {{ form_rest(employeeForm.photo) }}
+    {% if employee.photoName == null %}
+        <!-- Text input-->
+        <div class="form-group" style="padding-left: 8%">
+            <label class="col-md-4 control-label" ></label>
+            <div class="col-md-3 ">
+                <a href="#" class="thumbnail">
+                    <img  style="max-height: 100%;max-width: 100%" src="{{ asset('uploads/profile_photos/default-profile.png') }}" alt="">
+                </a>
+            </div>
+        </div>
+        {% else %}
+            <!-- Text input-->
+            <div class="form-group" style="padding-left: 8%">
+                <label class="col-md-4 control-label" ></label>
+                <div class="col-md-3 ">
+                    <a href="#" class="thumbnail">
+
+                        <img  style="max-height: 100%;max-width: 100%" src="{{ asset('uploads/profile_photos/'~ employee.photoName)}}" alt="">
+                    </a>
+                </div>
+            </div>
+    {% endif %}
     <!-- Text input-->
     <div class="form-group">
         <label class="col-md-4 control-label">First Name</label>
@@ -132,11 +155,10 @@
 
 </fieldset>
 
-{{ form_end(employeeForm) }}
+{{ form_end(employeeForm,{"render_rest": false}) }}
 
-<div class="form-group">
+<div class="form-group" style="margin-top: -5%">
     <label class="col-md-4 control-label"></label>
-
     <div class="col-md-4"><br>
 
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

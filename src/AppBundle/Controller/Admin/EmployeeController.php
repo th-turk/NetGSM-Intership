@@ -11,11 +11,13 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Photos;
+use AppBundle\Entity\ProfilePhoto;
 use AppBundle\Form\EmployeeForm;
 use AppBundle\Form\PhotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -52,23 +54,24 @@ class EmployeeController extends Controller
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm(EmployeeForm::class);
+
+        $newEmployee = new Employee();
+        $form = $this->createForm(EmployeeForm::class,$newEmployee);
         $form->handleRequest($request);
-       if ($form->isSubmitted() && $form->isValid()){
 
-           $employee=$form->getData();
-
+       if ($form->isSubmitted() && $form->isValid())
+       {
+           $newEmployee->upload();
            $em = $this->getDoctrine()->getManager();
-           $em ->persist($employee);
-
+           $em ->persist($newEmployee);
            $em->flush();
 
            $this->addFlash("success","Employee Added Successfully ");
            return $this->redirectToRoute("all_employees");
-
        }
        return $this->render("admin/employees/new/new.html.twig",[
           "employeeForm" => $form->createView(),
+
 
        ]);
     }
@@ -78,20 +81,28 @@ class EmployeeController extends Controller
      */
     public function editAction(Request $request,Employee $employee)
     {
-        $form = $this->createForm(EmployeeForm::class,$employee);
+        $editEmployee = new Employee();
+        $editEmployee = $employee;
+        $form = $this->createForm(EmployeeForm::class,$editEmployee);
+        $fs = new Filesystem();
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $employee=$form->getData();
+            $tempPhoto=$editEmployee->getPhotoName();
+
+            $editEmployee->upload();
             $em = $this->getDoctrine()->getManager();
-            $em ->persist($employee);
+            $em ->persist($editEmployee);
             $em->flush();
+
+            unlink($employee->getUploadRoot()."/".$tempPhoto);
 
             $this->addFlash("success","Employee Edited Successfully ");
             return $this->redirectToRoute("all_employees");
         }
         return $this->render("admin/employees/edit/new.html.twig",[
-            "employeeForm" => $form->createView()
+            "employeeForm" => $form->createView(),
+            "employee"=>$employee
         ]);
     }
 
@@ -119,10 +130,12 @@ class EmployeeController extends Controller
      */
     public function detailsAction(Request $request,Employee $employee)
     {
+
         $form = $this->createForm(EmployeeForm::class,$employee);
 
         return $this->render("admin/employees/details/details.html.twig",[
             "employeeForm" => $form->createView(),
+            "employee"=>$employee
         ]);
     }
 

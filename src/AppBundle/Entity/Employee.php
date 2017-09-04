@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -58,18 +59,25 @@ class Employee
     private $delCase=false;
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Degree")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(name="degree_id",referencedColumnName="id",nullable=true)
      */
     private $degree;
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(name="department_id",referencedColumnName="id",nullable=true)
      */
     private $department;
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photos" ,mappedBy="employee")
      */
     private $photos;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $photoName;
+
+    private $photo;
 
     public function __construct()
     {
@@ -188,10 +196,72 @@ class Employee
         return $this->photos;
     }
 
+
+    public function getPhotoName()
+    {
+        return $this->photoName;
+    }
+
+    public function setPhotoName($photoName)
+    {
+        $this->photoName = $photoName;
+    }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(UploadedFile $photo)
+    {
+        $this->photo = $photo;
+    }
+
+    public function getUploadDir()
+    {
+        return "uploads/profile_photos";
+    }
+
+    public function getAbsoluteRoot()
+    {
+        return $this->getUploadRoot().$this->photoName;
+    }
+
+    public function getWebPath()
+    {
+        return $this->getUploadDir()."/".$this->photoName;
+    }
+
+    public function getUploadRoot()
+    {
+        return __DIR__."/../../../web/".$this->getUploadDir()."/";
+    }
+    public function upload()
+    {
+        if ($this->photo===null){
+            return;
+        }
+        $this->photoName = $this->photo->getClientOriginalName();
+
+
+        if (!is_dir($this->getUploadRoot()))
+        {
+            mkdir($this->getUploadRoot(),"0777",true);
+        }
+
+        $this->photo->move($this->getUploadRoot(),$this->photoName);
+        unset($this->photo);
+
+    }
+
+
     public function __toString()
     {
         return $this->getFirstname()." ".$this->getLastname();
     }
+
+
+
 
 
 
