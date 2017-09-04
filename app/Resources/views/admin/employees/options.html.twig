@@ -1,0 +1,26 @@
+<td class="text-center">
+    <a href="{{ path('employee_details',{"id":employee.id}) }}">
+        <button class="btn btn-success btn-sm col-md-12" data-title="Detail" data-toggle="modal" data-target="#detail" >
+            <span class="glyphicon glyphicon-eye-open"></span>
+            Detail
+        </button>
+    </a>
+
+</td>
+<td class="text-center" >
+    <a href="{{ path('employee_edit',{"id":employee.id }) }}">
+        <button class="btn btn-primary btn-sm col-md-12" data-title="Edit" data-toggle="modal" data-target="#edit" >
+            <span class="glyphicon glyphicon-pencil"></span>
+            Edit
+        </button>
+    </a>
+
+</td>
+<td class="text-center">
+    <a href="{{ path('employee_delete',{"id":employee.id}) }}">
+        <button class="btn btn-danger btn-sm col-md-12" data-title="Delete" data-toggle="modal" data-target="#delete" >
+            <span class="glyphicon glyphicon-trash"></span>
+            Delete
+        </button>
+    </a>
+</td>

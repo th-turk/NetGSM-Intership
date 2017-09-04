@@ -1,0 +1,23 @@
+{% if not ("ROLE_ADMIN" in user.roles) %}
+<td class="text-center">
+    <a href="{{ path('employee_role_edit',{"id":user.id}) }}">
+        <button class="btn btn-success btn-sm col-md-12" data-title="Detail" data-toggle="modal" data-target="#detail" >
+            <span class="fa fa-lock"></span>
+            Set As ADMIN
+        </button>
+    </a>
+</td>
+{% else%}
+    <td class="text-center">
+        <a href="{{ path('employee_role_edit',{"id":user.id}) }}">
+            <button class="btn btn-warning btn-sm col-md-12" data-title="Detail" data-toggle="modal" data-target="#detail" >
+                <span class="fa fa-unlock"></span>
+                Set As USER
+            </button>
+        </a>
+    </td>
+{% endif %}
+
+
+
+

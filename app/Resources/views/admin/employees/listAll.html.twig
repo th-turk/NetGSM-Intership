@@ -1,0 +1,70 @@
+{% extends  "admin/index.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/employees/style.css') }}">
+{% endblock %}
+
+
+    {% block adminContent %}
+
+
+
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('error') %}
+            <div class="alert alert-danger fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('error') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    <div class="container employees col-md-12" >
+    <table id="example" class="table table-responsive ">
+        <thead class="inverse">
+        <tr class="elegant-color">
+            <th class="text-center">Select</th>
+            <th>id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+
+            <th  class="text-center" colspan="3" >Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+
+            <tr class="info">
+                <td class="text-center ">
+                    <label class="checkbox-inline checkbox-emp " >
+                        <input type="checkbox" value="">
+                    </label>
+                </td>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.firstname }}</td>
+                <td>{{ employee.lastname }}</td>
+                <td>{{ employee.department.name }}</td>
+
+                {{ include('admin/employees/options.html.twig') }}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        {{ include('admin/employees/pagination.html.twig') }}
+    </div>
+
+
+    {% endblock %}
+
+
+

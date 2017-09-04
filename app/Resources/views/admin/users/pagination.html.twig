@@ -1,0 +1,59 @@
+<div class="bd-example text-center" >
+    <nav aria-label="Page navigation" >
+
+        <ul class="pagination justify-content-center">
+
+            {% for page in 1..pages %}
+
+                {% if app.request.get("numb") ==  page  %}
+                    <li >
+
+                        <a class=" active"
+                           href=
+                           "
+                           {% if app.request.get("_route") == "all_users" %}
+                             {{ path('all_users',{"numb":page}) }}
+                                {% elseif app.request.get("_route") == "admin_users" %}
+                                    {{ path('admin_users',{"numb":page}) }}
+                                        {% elseif app.request.get("_route") == "employee_users" %}
+                                        {{ path('employee_users',{"numb":page}) }}
+                                            {% elseif app.request.get("_route") == "employee_has_users" %}
+                                            {{ path('employee_has_users',{"numb":page}) }}
+                                                {% elseif app.request.get("_route") == "employee_has_no_users" %}
+                                                {{ path('employee_has_no_users',{"numb":page}) }}
+                            {% endif %}
+                            "
+
+                        >
+                            {{ page }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li >
+                    <a
+                    href=
+                        "
+                           {% if app.request.get("_route") == "all_users" %}
+                             {{ path('all_users',{"numb":page}) }}
+                                {% elseif app.request.get("_route") == "admin_users" %}
+                                    {{ path('admin_users',{"numb":page}) }}
+                                        {% elseif app.request.get("_route") == "employee_users" %}
+                                        {{ path('employee_users',{"numb":page}) }}
+                                            {% elseif app.request.get("_route") == "employee_has_users" %}
+                                            {{ path('employee_has_users',{"numb":page}) }}
+                                                {% elseif app.request.get("_route") == "employee_has_no_users" %}
+                                                {{ path('employee_has_no_users',{"numb":page}) }}
+                            {% endif %}
+                            "
+
+                    >
+                    {{ page }}
+                    </a>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+        </ul>
+    </nav>
+</div>

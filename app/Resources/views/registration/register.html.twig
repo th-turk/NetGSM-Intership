@@ -1,0 +1,25 @@
+{% extends "registration/design/FromLayout.html.twig" %}
+
+{% block login %}
+    {{ include('main/_loginForm.html.twig') }}
+{% endblock %}
+
+{% block body %}
+    <br><br>
+    <div class="row">
+        <div class="container">
+            <div class="login-register-form-section">
+                <ul class="nav nav-tabs " role="tablist">
+                    <li class="active" ><a href="#" data-toggle="tab">REGISTRATION</a></li>
+                </ul>
+                <div class="tab-content">
+                    {{ include('registration/design/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

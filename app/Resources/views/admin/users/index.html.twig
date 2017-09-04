@@ -1,0 +1,83 @@
+{% extends  "admin/index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('css/admin/employees/style.css') }}">
+{% endblock %}
+    {% block adminContent %}
+
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('error') %}
+            <div class="alert alert-danger fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('error') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="container users col-lg-12" >
+
+        {% include "admin/users/dropdown.html.twig" %}
+
+            <table id="example" class="table table-responsive ">
+                <thead class="inverse">
+                <tr class="elegant-color">
+                    <th class="text-center">Select</th>
+                    <th>id</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Employee</th>
+
+                    <th class="text-center">Role Option</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+
+                    <tr class="success">
+                        <td class="text-center ">
+                            <label class="checkbox-inline checkbox-emp " >
+                                <input type="checkbox" value="">
+                            </label>
+                        </td>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.usernamee }}</td>
+                        <td>{{ user.password }}</td>
+                        {% if not (user.employee) %}
+                        <td>
+                            <a href="{{ path('user_employee',{"id":user.id}) }}">
+                                <button class="btn btn-primary btn-sm col-md-12" data-title="Edit" data-toggle="modal" data-target="#edit" >
+                                    <span class="fa fa-user-plus"></span>
+                                    Add Employee
+                                </button>
+                            </a>
+                        </td>
+                        {% else %}
+                            <td  >
+                                {{user.employee }}
+                            </td>
+                        {% endif %}
+                        </td>
+
+
+                        {{ include('admin/users/options.html.twig') }}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ include('admin/users/pagination.html.twig') }}
+        </div>
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin/user/main.js') }}"></script>
+{% endblock %}

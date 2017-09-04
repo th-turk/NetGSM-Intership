@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+
+{% block login %}
+    {% if is_granted("ROLE_USER") %}
+        <div id="navbar" class=" navbar-right center-block" style="margin: 0.5%;">
+            <a href="{{ path('user_logout') }}">
+                <button type="button" class="btn btn-success">
+                    Logout
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </button>
+            </a>
+        </div>
+    {% else %}
+        {{ include('main/_loginForm.html.twig') }}
+    {% endif %}
+{% endblock %}
+
+{% block body  %}
+    <div class="container-message">{{ message }}</div>
+
+    <br>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br>
+    <br>
+{% endblock %}

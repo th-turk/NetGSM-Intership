@@ -1,0 +1,76 @@
+{% extends  "admin/index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin/employees/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">
+
+{% endblock %}
+{% block adminContent %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success fade in" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('error') %}
+        <div class="alert alert-danger fade in" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {% for msg in app.session.flashBag.get('error') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="container col-lg-12">
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <!-- Form for new Category Begins -->
+                    <div style="margin: 0 auto  10% auto ;float: none" class=" col-sm-6 col">
+
+
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.address) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.startDate) }}
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-warning " type="submit">Edit Department</button>
+                        </div>
+                        {{ form_end(form) }}
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+    <script src="{{ asset('js/admin/employee/main.js') }}"></script>
+{% endblock %}

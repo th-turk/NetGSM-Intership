@@ -1,0 +1,32 @@
+AppBundle\Entity\Employee:
+  employee_{1..100}:
+          firstname: <firstName()>
+          lastname: <lastName()>
+          email : <email()>
+          phone: <randomNumber($nbDigits = NULL, $strict = false)>
+          address: <address()>
+          birthdate: <dateTimeBetween('-60 years','now')>
+          delCase: <boolean(20)>
+          department: "@department_*"
+          degree: "@degree_*"
+AppBundle\Entity\Department:
+  department_{1..10}:
+          name: <department()>
+          address: <address()>
+          startdate: <dateTimeBetween('-6 months','now')>
+          delCase: <boolean(10)>
+
+AppBundle\Entity\Degree:
+  degree_{1..6}:
+          name: <degree()>
+          delCase: <boolean(10)>
+
+AppBundle\Entity\Users:
+  users_{1..10}:
+          usernamee: taha+<current()>
+          plainpassword: iliketaha
+          roles: ["50%? ROLE_ADMIN : ROLE_USER"]
+          employee: "@employee_*"
+
+
+

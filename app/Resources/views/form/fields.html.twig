@@ -1,0 +1,9 @@
+{% use "bootstrap_3_layout.html.twig" %}
+
+{% block form_row -%}
+    <div class="{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}

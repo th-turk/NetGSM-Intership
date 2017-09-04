@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login/style.css') }}">
+{% endblock %}
+
+{% block login %}
+
+
+    <div id="navbar" class=" navbar-right center-block" style="margin: 0.5%;">
+        <a href="{{ path('user_register') }}">
+            <button type="button" class="btn btn-info">
+                Register
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </button>
+        </a>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <br><br>
+
+    <div class="row">
+        <div class="container">
+            <div class="login-register-form-section">
+                {% if error %}
+                    <div class="alert-danger " >
+                        <h4>
+                            <strong>
+                                {{ error.messageKey|replace({"Invalid credentials.":"Wrong password."}) }}
+                            </strong>
+                        </h4>
+                    </div>
+                {% endif %}
+                <ul class="nav nav-tabs " role="tablist">
+                    <li class="active" ><a href="#" data-toggle="tab">LOGIN</a></li>
+                </ul>
+                <div class="tab-content">
+                    {{ include('login/form.html.twig') }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

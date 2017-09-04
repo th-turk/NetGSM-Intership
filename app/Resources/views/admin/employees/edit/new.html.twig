@@ -1,0 +1,17 @@
+{% extends "admin/index.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin/employees/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">
+
+{% endblock %}
+    {% block adminContent %}
+        {% include 'admin/employees/edit/form.html.twig' %}
+
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+    <script src="{{ asset('js/admin/employee/main.js') }}"></script>
+{% endblock %}
