@@ -12,6 +12,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Department;
 use AppBundle\Form\DepartmentForm;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -88,23 +89,41 @@ class DepartmentController extends  Controller
         $em=$this->getDoctrine()->getManager();
         $department=$em->getRepository("AppBundle:Department")->find($id);
 
-        try{
+        if ($this->checkForDelete($id))
+        {
+            $this->addFlash('error', 'Department  Has Employess ');
+            // flash
+            // logger
+            // redirection
+            return $this->redirect($this->generateUrl("all_departments"));
+        }
+        else {
             $department->setDelCase("1");
             $em = $this->getDoctrine()->getManager();
             $em->persist($department);
             $em->flush();
 
-            $this->addFlash("success","Deleted Successfully ");
+            $this->addFlash("success", "Deleted Successfully ");
 
-        } catch(\Exception $e){
-            // other exceptions
-            $this->addFlash('error', 'Department  Has Employess ');
-            // flash
-            // logger
-            // redirection
+            return $this->redirect($this->generateUrl("all_departments"));
         }
+    }
 
-        return $this->redirect($this->generateUrl('all_departments'));
-
+    public function checkForDelete($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $employees= $em
+            ->getRepository("AppBundle:Employee")
+            ->findAllNotDeleted();
+        $flag= false;
+        foreach ($employees as $e)
+        {
+            if ($id == $e->getDepartment()->getId())
+            {
+                $flag=true;
+                break;
+            }
+        }
+        return $flag;
     }
 }

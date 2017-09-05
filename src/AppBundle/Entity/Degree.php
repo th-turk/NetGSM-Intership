@@ -29,7 +29,7 @@ class Degree
      */
     private $name;
     /**
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(type="boolean")
      */
     private $delCase=false;

@@ -34,22 +34,7 @@
                         <!-- Form for new Category Begins -->
                         <div style="margin: 0 auto  7% auto ;float: none" class=" col-sm-6 col">
 
-
-                                {{ form_start(formDepartment) }}
-                                <div class="form-group">
-                                    {{ form_row(formDepartment.name) }}
-                                </div>
-                                <div class="form-group">
-                                    {{ form_row(formDepartment.address) }}
-                                </div>
-                                <div class="form-group">
-                                    {{ form_row(formDepartment.startDate) }}
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary " type="submit">Add Department</button>
-                                </div>
-                                {{ form_end(formDepartment) }}
-
+                                {{ include('admin/department/form.html.twig') }}
 
                         </div>
 

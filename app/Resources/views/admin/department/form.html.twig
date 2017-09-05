@@ -1,0 +1,15 @@
+{{ form_start(formDepartment, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(formDepartment) }}
+    <div class="form-group">
+        {{ form_row(formDepartment.name) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(formDepartment.address) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(formDepartment.startDate) }}
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary " type="submit">Add Department</button>
+    </div>
+{{ form_end(formDepartment) }}

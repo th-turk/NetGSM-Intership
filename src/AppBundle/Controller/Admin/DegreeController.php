@@ -10,7 +10,9 @@ namespace AppBundle\Controller\Admin;
 
 
 use AppBundle\Entity\Degree;
+use AppBundle\Entity\Employee;
 use AppBundle\Form\DegreeForm;
+use AppBundle\Form\EmployeeForm;
 use Couchbase\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -31,11 +33,12 @@ class DegreeController extends Controller
      */
     public function showAction(Request $request)
     {
-        $form = $this->createForm(DegreeForm::class);
 
         $degrees = $this->getDoctrine()
         ->getRepository("AppBundle:Degree")
         ->findAllNotDeleted();
+
+        $form = $this->createForm(DegreeForm::class);
 
         $form->handleRequest($request);
         if ( $form->isSubmitted() && $form->isValid()){
@@ -51,6 +54,8 @@ class DegreeController extends Controller
             "degreeForm"=> $form->createView(),
             "degree"=>$degrees
         ]);
+
+
     }
 
     /**
@@ -76,7 +81,7 @@ class DegreeController extends Controller
         }
 
         return $this->render("admin/degree/edit.html.twig",[
-            "form" => $form->createView()
+            "degreeForm" => $form->createView()
         ]);
 
     }
@@ -86,25 +91,43 @@ class DegreeController extends Controller
     public function deleteAction(Request $request,$id)
     {
         $em=$this->getDoctrine()->getManager();
-        $department=$em->getRepository("AppBundle:Degree")->find($id);
+        $degree=$em->getRepository("AppBundle:Degree")->find($id);
 
-        try{
-            $department->setDelCase("1");
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($department);
-            $em->flush();
 
-            $this->addFlash("success","Deleted Successfully ");
-
-        } catch(\Exception $e){
-            // other exceptions
+        if ($this->checkForDelete($id))
+        {
             $this->addFlash('error', 'Degree  Has Employess ');
             // flash
             // logger
             // redirection
+            return $this->redirect($this->generateUrl("all_degrees"));
         }
+        else {
+            $degree->setDelCase("1");
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($degree);
+            $em->flush();
 
-        return $this->redirect($this->generateUrl("all_degrees"));
+            $this->addFlash("success", "Deleted Successfully ");
 
+            return $this->redirect($this->generateUrl("all_degrees"));
+        }
+    }
+    public function checkForDelete($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $employees= $em
+            ->getRepository("AppBundle:Employee")
+            ->findAllNotDeleted();
+        $flag= false;
+        foreach ($employees as $e)
+        {
+            if ($id == $e->getDepartment()->getId())
+            {
+                $flag=true;
+                break;
+            }
+        }
+        return $flag;
     }
 }

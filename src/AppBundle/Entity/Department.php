@@ -30,17 +30,17 @@ class Department
     private $name;
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank()
+     *
      */
     private $address;
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank()
+     *
      */
     private $delCase=0;
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank()
+     *
      */
     private $startDate;
 
