@@ -42,36 +42,11 @@ class PhotoController extends Controller
             $success = file_put_contents($file, $data);
             print_r($success ? $file : 'Unable to save the file.');
         }
-        /*$photo = new Photos();
-        $form = $this->createForm(PhotoType::class,$photo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-           $photo->upload();
-           $em = $this->getDoctrine()->getManager();
-           $em ->persist($photo);
-           $em->flush();
-
-        }
-        $em = $this->getDoctrine()->getManager();
-        $photos  =$em->getRepository("AppBundle:Photos")
-            ->findAll();
-
-*/
-        return $this->render('upload_photo.html.twig', array(
+        return $this->render('main/index.html.twig', array(
             "formHidden"=>$hiddenform->createView()
         ));
     }
 
-    public function getUploadDir()
-    {
-        return "uploads/photos";
-    }
-
-    public function getUploadRoot()
-    {
-        return __DIR__."/../../../web/".$this->getUploadDir()."/";
-    }
 
 
 }

@@ -16,45 +16,62 @@
 {% endblock %}
 
 {% block body  %}
-    <div class="container-message">{{ message }}</div>
 
-    <br>
+    <div class="container" style="margin-top: 10%">
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br> <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br> <br>
-    <br> <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br> <br>
-    <br>
-    <br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="row" >
+            {{ include('main/employee_tracking.html.twig') }}
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+
+        window.onload = function()
+        {
+            // Grab elements, create settings, etc.
+            var video = document.getElementById('video');
+
+            // Get access to the camera!
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Not adding `{ audio: true }` since we only want video now
+                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                });
+            }
+            else if(navigator.getUserMedia) { // Standard
+                navigator.getUserMedia({ video: true }, function(stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+                navigator.webkitGetUserMedia({ video: true }, function(stream){
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+                navigator.mozGetUserMedia({ video: true }, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+        };
+
+        function uploadEx() {
+
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            context.drawImage(video, 0, 0, 480, 360);
+            var dataURL = canvas.toDataURL("image/png");
+            document.getElementById("form1_textArea").value=dataURL;
+        }
+
+    </script>
+
 {% endblock %}

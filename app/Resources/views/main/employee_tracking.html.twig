@@ -1,0 +1,45 @@
+<hr/>
+{% if app.session.flashBag.has('success') %}
+    <div class="alert alert-success fade in" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {% for msg in app.session.flashBag.get('success') %}
+            {{ msg }}
+        {% endfor %}
+    </div>
+{% endif %}
+{% if app.session.flashBag.has('error') %}
+    <div class="alert alert-danger fade in" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {% for msg in app.session.flashBag.get('error') %}
+            {{ msg }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <h1 class="text-danger">Employee Tracking</h1>
+
+    <div class="col-md-5">
+        <div class="well">
+            <video id="video" width="480" height="360" class="img-responsive" autoplay></video>
+            <canvas width="480" height="360" id="canvas"  style="display: none;">canvas</canvas>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="well">
+            {{ form_start(formHidden) }}
+            <div class="form-group">
+                {{ form_row(formHidden.employee) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(formHidden.textArea) }}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" onclick="uploadEx()" value="Upload">
+                    Upload
+                </button>
+            </div>
+            {{ form_end(formHidden) }}
+        </div>
+    </div>
