@@ -2,14 +2,11 @@
 
 {% block body %}
 <div class="container"style="margin: 5%">
-    {{ form_start(form) }}
-    {{ form_row(form.photo) }}
-    <button type="submit" class="btn btn-danger">UPload</button>
-    {{ form_end(form) }}
 
     <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Snap Photo</button>
     <canvas id="canvas" width="640" height="480"></canvas>
+
 </div>
 
 
@@ -56,9 +53,11 @@
         var context = canvas.getContext('2d');
         var video = document.getElementById('video');
 
+
         // Trigger photo take
         document.getElementById("snap").addEventListener("click", function() {
             context.drawImage(video, 0, 0, 640, 480);
+
         });
     </script>
 

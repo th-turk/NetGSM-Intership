@@ -11,12 +11,14 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Photos;
+use AppBundle\Form\LoginPhotoType;
 use AppBundle\Form\PhotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PhotoController extends Controller
 {
@@ -25,7 +27,22 @@ class PhotoController extends Controller
      */
     public function newAction(Request $request)
     {
-        $photo = new Photos();
+        $hiddenform=$this->createForm(LoginPhotoType::class);
+
+        $hiddenform->handleRequest($request);
+        if ($hiddenform->isSubmitted() && $hiddenform->isValid())
+        {
+            $upload_dir = $this->getUploadRoot();
+            //$img = $request->request->get("");
+            $img = $hiddenform->get("textArea")->getData();
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            $file = $upload_dir . mktime() . ".png";
+            $success = file_put_contents($file, $data);
+            print_r($success ? $file : 'Unable to save the file.');
+        }
+        /*$photo = new Photos();
         $form = $this->createForm(PhotoType::class,$photo);
         $form->handleRequest($request);
 
@@ -40,11 +57,20 @@ class PhotoController extends Controller
         $photos  =$em->getRepository("AppBundle:Photos")
             ->findAll();
 
-
-        return $this->render('takephoto.html.twig', array(
-            'form' => $form->createView(),
-            "photos"=>$photos,
+*/
+        return $this->render('upload_photo.html.twig', array(
+            "formHidden"=>$hiddenform->createView()
         ));
+    }
+
+    public function getUploadDir()
+    {
+        return "uploads/photos";
+    }
+
+    public function getUploadRoot()
+    {
+        return __DIR__."/../../../web/".$this->getUploadDir()."/";
     }
 
 

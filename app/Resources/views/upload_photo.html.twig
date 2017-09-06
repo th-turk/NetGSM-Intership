@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container" style="margin-top: 20%">
+        <h1>Upload Canvas Data to PHP Server</h1>
+        <canvas width="80" height="80" id="canvas">canvas</canvas>
+
+
+
+        {{ form_start(formHidden) }}
+            {{ form_row(formHidden.textArea) }}
+
+        <button class="btn btn-primary" onclick="uploadEx()" value="Upload">Upload</button>
+        {{ form_end(formHidden) }}
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.rect(0, 0, 80, 80);
+            context.fillStyle = 'yellow';
+            context.fill();
+        };
+
+        function uploadEx() {
+            var canvas = document.getElementById("canvas");
+            var dataURL = canvas.toDataURL("image/png");
+            document.getElementById("form1_textArea").value=dataURL;
+        }
+
+    </script>
+{% endblock %}

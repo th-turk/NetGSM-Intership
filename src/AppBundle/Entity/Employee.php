@@ -241,7 +241,7 @@ class Employee
         if ($this->photo===null){
             return;
         }
-        $this->photoName = $this->photo->getClientOriginalName();
+        $this->photoName = md5(uniqid()).$this->photo->getClientOriginalName();
 
 
         if (!is_dir($this->getUploadRoot()))
