@@ -13,6 +13,7 @@ use AppBundle\Entity\Degree;
 use AppBundle\Entity\Department;
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Users;
+use AppBundle\Form\EmployeeForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +35,30 @@ class AdminHome extends  Controller
         return $this->render("admin/homepage.html.twig",[
             "widgets"=>$this->widgetContenAction()
         ]);
+    }
+    /**
+     * @Route("/profile/{id}",name="user_profile")
+     */
+    public function profileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $emp = $em
+            ->getRepository(Employee::class)
+            ->find($id);
+        if ($emp->getDelCase() != 1 || $emp==null)
+        {
+            $form = $this->createForm(EmployeeForm::class,$emp);
+
+            return $this->render("admin/profile.html.twig",[
+                "employeeForm" => $form->createView(),
+                "employee"=>$emp
+            ]);
+        }
+        else
+        {
+            $this->addFlash("error", "Employee Not Exsist ");
+            return $this->redirectToRoute("admin_page");
+        }
     }
 
     /**

@@ -11,7 +11,7 @@
             <label class="col-md-4 control-label" ></label>
             <div class="col-md-3 ">
                 <a href="#" class="thumbnail">
-                    <img  style="max-height: 100%;max-width: 100%" src="{{ asset('uploads/profile_photos/default-profile.png') }}" alt="">
+                    <img  style="height: auto;width: auto" src="{{ asset('uploads/profile_photos/default-profile.png') }}" alt="">
                 </a>
             </div>
         </div>
@@ -160,37 +160,13 @@
 <div class="form-group" style="margin-top: -5%">
     <label class="col-md-4 control-label"></label>
     <div class="col-md-4"><br>
-         {% if is_granted("ROLE_ADMIN") %}
+
                  <a href="{{ path('all_employees') }}">
                      <button type="submit" class="btn btn-success " >
                          <span class="glyphicon glyphicon-arrow-left"></span>
                          ALL EMPLOYEES
                      </button>
                  </a>
-
-             {% if employee.id == app.user.employee.id %}
-                 <div class="col-md-6">
-                     <a href="{{ path('employee_edit',{"id":app.user.employee.id}) }}">
-                         <button type="submit" class="btn btn-info " >
-                             <span class="glyphicon glyphicon-pencil"></span>
-                             EDIT ME
-                         </button>
-                     </a>
-                 </div>
-            {% endif %}
-
-            {% else %}
-        <div class="col-md-6">
-            <a href="{{ path('admin_page') }}">
-                <button type="submit" class="btn btn-success" >
-
-                    <span class="glyphicon glyphicon-arrow-left"></span>
-                    HOME PAGE
-
-                </button>
-            </a>
-        </div>
-        {% endif %}
     </div>
 
 </div>

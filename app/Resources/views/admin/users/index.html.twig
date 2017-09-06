@@ -30,7 +30,6 @@
             <table id="example" class="table table-responsive ">
                 <thead class="inverse">
                 <tr class="elegant-color">
-                    <th class="text-center">Select</th>
                     <th>id</th>
                     <th>Email</th>
                     <th>Password</th>
@@ -43,11 +42,6 @@
                 {% for user in users %}
 
                     <tr class="success">
-                        <td class="text-center ">
-                            <label class="checkbox-inline checkbox-emp " >
-                                <input type="checkbox" value="">
-                            </label>
-                        </td>
                         <td>{{ user.id }}</td>
                         <td>{{ user.usernamee }}</td>
                         <td>{{ user.password }}</td>
@@ -62,7 +56,11 @@
                         </td>
                         {% else %}
                             <td >
-                                {{user.employee }}
+                                {% if user.employee.delCase == 0 %}
+                                <a href="{{ path('employee_details',{"id":user.employee.id}) }}">{{user.employee }}</a>
+                                {% else %}
+                                <a class= "text-danger" href="{{ path('employee_details',{"id":user.employee.id}) }}">{{user.employee }}</a>
+                                {% endif %}
                             </td>
                         {% endif %}
                         </td>

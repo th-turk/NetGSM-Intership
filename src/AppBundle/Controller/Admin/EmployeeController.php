@@ -81,28 +81,41 @@ class EmployeeController extends Controller
      */
     public function editAction(Request $request,Employee $employee)
     {
-        $editEmployee = new Employee();
-        $editEmployee = $employee;
-        $form = $this->createForm(EmployeeForm::class,$editEmployee);
-       
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-            $tempPhoto=$editEmployee->getPhotoName();
+        $em = $this->getDoctrine()->getManager();
+        $emp = $em
+            ->getRepository(Employee::class)
+            ->find($employee->getId());
+        if ($emp->getDelCase() != 1)
+        {
+            $editEmployee = new Employee();
+            $editEmployee = $employee;
+            $form = $this->createForm(EmployeeForm::class, $editEmployee);
 
-            $editEmployee->upload();
-            $em = $this->getDoctrine()->getManager();
-            $em ->persist($editEmployee);
-            $em->flush();
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $tempPhoto = $editEmployee->getPhotoName();
 
-            unlink($employee->getUploadRoot()."/".$tempPhoto);
+                $editEmployee->upload();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($editEmployee);
+                $em->flush();
 
-            $this->addFlash("success","Employee Edited Successfully ");
+                unlink($employee->getUploadRoot() . "/" . $tempPhoto);
+
+                $this->addFlash("success", "Employee Edited Successfully ");
+                return $this->redirectToRoute("all_employees");
+            }
+                return $this->render("admin/employees/edit/new.html.twig",[
+                    "employeeForm" => $form->createView(),
+                    "employee"=>$employee
+                ]);
+        }
+        else
+        {
+            $this->addFlash("error", "Employee Not Exsist ");
             return $this->redirectToRoute("all_employees");
         }
-        return $this->render("admin/employees/edit/new.html.twig",[
-            "employeeForm" => $form->createView(),
-            "employee"=>$employee
-        ]);
+
     }
 
     /**
@@ -129,13 +142,24 @@ class EmployeeController extends Controller
      */
     public function detailsAction(Request $request,Employee $employee)
     {
-
+        $em = $this->getDoctrine()->getManager();
+        $emp = $em
+            ->getRepository(Employee::class)
+            ->find($employee->getId());
+        if ($emp->getDelCase() != 1)
+        {
         $form = $this->createForm(EmployeeForm::class,$employee);
 
         return $this->render("admin/employees/details/details.html.twig",[
             "employeeForm" => $form->createView(),
             "employee"=>$employee
         ]);
+        }
+        else
+        {
+            $this->addFlash("error", "Employee Not Exsist ");
+            return $this->redirectToRoute("all_employees");
+        }
     }
 
     public function pagination($allContent,$numb,$perPage)

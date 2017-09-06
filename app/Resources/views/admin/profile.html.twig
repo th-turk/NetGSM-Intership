@@ -1,0 +1,176 @@
+{% extends "admin/index.html.twig" %}
+
+{% block adminContent %}
+    {{ form_start(employeeForm) }}
+
+    <fieldset>
+        <!-- Form Name -->
+        <legend><center><h2><b>Employee Details </b></h2></center></legend>
+
+        {{ form_rest(employeeForm.photo) }}
+        {% if employee.photoName == null %}
+            <!-- Text input-->
+            <div class="form-group" style="padding-left: 8%">
+                <label class="col-md-4 control-label" ></label>
+                <div class="col-md-3 ">
+                    <a href="#" class="thumbnail">
+                        <img  style="height: auto;width: auto" src="{{ asset('uploads/profile_photos/default-profile.png') }}" alt="">
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <!-- Text input-->
+            <div class="form-group" style="padding-left: 8%">
+                <label class="col-md-4 control-label" ></label>
+                <div class="col-md-3 ">
+                    <a href="#" class="thumbnail">
+
+                        <img  style="max-height: 100%;max-width: 100%" src="{{ asset('uploads/profile_photos/'~ employee.photoName)}}" alt="">
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label">First Name</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form_row(employeeForm.firstname,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >Last Name</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form_row(employeeForm.lastname,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label">Birth Date</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                    {{ form_row(employeeForm.birthdate,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Department / Office</label>
+            <div class="col-md-4 selectContainer">
+                <div class="input-group ">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    {{ form_row(employeeForm.department,{
+                        "attr":{
+                            "disabled":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Degree</label>
+            <div class="col-md-4 selectContainer">
+                <div class="input-group ">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                    {{ form_row(employeeForm.degree,{
+                        "attr":{
+                            "disabled":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label">E-Mail</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group ">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    {{ form_row(employeeForm.email,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label">Contact No.</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group ">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                    {{ form_row(employeeForm.phone,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address</label>
+            <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    {{ form_row(employeeForm.address,{
+                        "attr":{
+                            "readonly":true
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+
+
+        <!-- Button -->
+
+
+    </fieldset>
+
+    {{ form_end(employeeForm,{"render_rest": false}) }}
+
+    <div class="form-group" style="margin-top: -5%">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4"><br>
+
+            <a href="{{ path('admin_page') }}">
+                <button type="submit" class="btn btn-info " >
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    HOMEPAGE
+                </button>
+            </a>
+        </div>
+
+    </div>
+{% endblock %}

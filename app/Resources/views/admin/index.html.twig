@@ -15,6 +15,22 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('error') %}
+            <div class="alert alert-danger fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for msg in app.session.flashBag.get('error') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
             {% block adminContent %}
             {% endblock %}
         </div>

@@ -2,13 +2,23 @@
 
 {% block login %}
     {% if is_granted("ROLE_USER") %}
+
         <div id="navbar" class=" navbar-right center-block" style="margin: 0.5%;">
-            <a href="{{ path('admin_page') }}">
-                <button type="button" class="btn btn-danger">
-                    <span class="fa fa-user-secret"></span>
-                    Admin
-                </button>
-            </a>
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('admin_page') }}">
+                    <button type="button" class="btn btn-danger">
+                        <span class="fa fa-user-secret"></span>
+                        Admin
+                    </button>
+                </a>
+            {% else %}
+                <a href="{{ path('admin_page') }}">
+                    <button type="button" class="btn btn-info">
+                        <span class="fa fa-user"></span>
+                        User
+                    </button>
+                </a>
+            {% endif %}
             <a href="{{ path('user_logout') }}">
                 <button type="button" class="btn btn-success">
                     Logout
