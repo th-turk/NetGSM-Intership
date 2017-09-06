@@ -82,6 +82,13 @@ class MainController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/new",name="new")
+     */
+    public function newAdminAction()
+    {
+        return $this->render("new_admin.html.twig");
+    }
 
     public function getUploadDir($employeePage)
     {
