@@ -10,7 +10,7 @@ donut.setOnLoadCallback(drawChart);
 column.setOnLoadCallback(drawChart1);
 function drawChart1(){
     var data3 = google.visualization.arrayToDataTable([
-        ['', 'All Users',"Admin Users","User Users","Employeed Users","Not Employeed Users"],
+        ['', 'All Users',"Admin Users","User Users","Users are Employee","Users are not Employee"],
         ['Users',
             widgetcontent.allUsers,
             widgetcontent.adminUsers,

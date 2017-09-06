@@ -3,13 +3,13 @@
     <div class="col-lg-12">
         <div ></div>
         <h1 class="page-header">
-            Welcome to
+            Welcome
             {% if is_granted("ROLE_ADMIN") %}
                 Admin
             {% else %}
                 User
             {% endif %}
-             Section
+
             <strong>
                 {{ app.user ? app.user.usernamee  }}
             </strong>
@@ -47,31 +47,6 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-yellow">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-user fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class='huge'>{{ widgets["allUsers"] }}</div>
-                        <div> Users</div>
-                    </div>
-                </div>
-            </div>
-            {% if is_granted("ROLE_ADMIN") %}
-
-                <a href="{{ path('all_users') }}">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            {% endif %}
-        </div>
-    </div>
 
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
@@ -114,51 +89,80 @@
             </div>
             {% if is_granted("ROLE_ADMIN") %}
 
-            <a href="{{ path('all_degrees') }}">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
+                <a href="{{ path('all_degrees') }}">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
             {% endif %}
         </div>
     </div>
-</div>
-<div class="col-lg-12">
-    <div class="row" style="margin-bottom: 10%;">
-    <script type="text/javascript">
-        /* <![CDATA[ */
-        var widgetcontent = {
-            allEmployees: {{ widgets["allEmployees"] | trans }},
-            activeEmployees: {{ widgets["activeEmployees"] | trans }},
-            allDepartments: {{ widgets["allDepartments"] | trans }},
-            activeDepartments: {{ widgets["activeDepartments"] | trans }},
-            allDegrees: {{ widgets["allDegrees"] | trans }},
-            activeDegree: {{ widgets["activeDegree"] | trans }},
-            allUsers: {{ widgets["allUsers"] | trans }},
-            adminUsers: {{ widgets["adminUsers"] | trans }},
-            userUsers: {{ widgets["userUsers"] | trans }},
-            employeedUsers: {{ widgets["employeedUsers"] | trans }},
-            notEmployeedUsers: {{ widgets["notEmployeedUsers"] | trans }}
 
-        }
-        /* ]]> */
-    </script>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class='huge'>{{ widgets["allUsers"] }}</div>
+                        <div> Users</div>
+                    </div>
+                </div>
+            </div>
+            {% if is_granted("ROLE_ADMIN") %}
 
-        <div class="col-xs-5">
-            <div  id="donutchart"   ></div>
+                <a href="{{ path('all_users') }}">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            {% endif %}
         </div>
-        <div class="col-md-3">
-            <div  id="columnchart_material" ></div>
-        </div>
-        <div class="col-xs-5">
-            <div  id="donutchart1" ></div>
-        </div>
-        <div class="col-xs-5">
-            <div  id="donutchart2"></div>
-        </div>
-
     </div>
+
 </div>
+
+    <div class="col-lg-12">
+        <div class="row" >
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            var widgetcontent = {
+                allEmployees: {{ widgets["allEmployees"] | trans }},
+                activeEmployees: {{ widgets["activeEmployees"] | trans }},
+                allDepartments: {{ widgets["allDepartments"] | trans }},
+                activeDepartments: {{ widgets["activeDepartments"] | trans }},
+                allDegrees: {{ widgets["allDegrees"] | trans }},
+                activeDegree: {{ widgets["activeDegree"] | trans }},
+                allUsers: {{ widgets["allUsers"] | trans }},
+                adminUsers: {{ widgets["adminUsers"] | trans }},
+                userUsers: {{ widgets["userUsers"] | trans }},
+                employeedUsers: {{ widgets["employeedUsers"] | trans }},
+                notEmployeedUsers: {{ widgets["notEmployeedUsers"] | trans }}
+
+            }
+            /* ]]> */
+        </script>
+
+            <div class="col-md-3">
+                <div  id="donutchart"   ></div>
+            </div>
+            <div class="col-md-3">
+                <div  id="donutchart1" ></div>
+            </div>
+            <div class="col-md-3">
+                <div  id="donutchart2"></div>
+            </div>
+            <div class="col-lg-9 ">
+                <div class="" id="columnchart_material" ></div>
+            </div>
+
+        </div>
+    </div>
+
 <!-- /.row -->

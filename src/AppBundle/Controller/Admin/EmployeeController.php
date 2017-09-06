@@ -84,8 +84,7 @@ class EmployeeController extends Controller
         $editEmployee = new Employee();
         $editEmployee = $employee;
         $form = $this->createForm(EmployeeForm::class,$editEmployee);
-        $fs = new Filesystem();
-
+       
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $tempPhoto=$editEmployee->getPhotoName();
