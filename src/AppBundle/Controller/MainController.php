@@ -41,7 +41,7 @@ class MainController extends Controller
 
             $findedEmployee=$this->employeeFind($employee);
 
-                if ( $findedEmployee!= null)
+                if ( $findedEmployee!= null && $findedEmployee->getDelCase()!=1 )
                 {
                     if (!is_dir($this->getUploadRoot($employee)))
                     {
@@ -69,7 +69,7 @@ class MainController extends Controller
                     return $this->redirectToRoute("homepage");
                 }
                 else{
-                    $this->addFlash("error","You failled to login");
+                    $this->addFlash("error","Employee Not Founded");
                     return $this->redirectToRoute("homepage");
                 }
 
