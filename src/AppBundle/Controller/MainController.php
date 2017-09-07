@@ -72,22 +72,12 @@ class MainController extends Controller
                     $this->addFlash("error","Employee Not Founded");
                     return $this->redirectToRoute("homepage");
                 }
-
-
         }
 
         return  $this->render ("main/index.html.twig",[
             "formLogin" =>$formLogin->createView(),
             "formHidden"=>$hiddenform->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/new",name="new")
-     */
-    public function newAdminAction()
-    {
-        return $this->render("new_admin.html.twig");
     }
 
     public function getUploadDir($employeePage)

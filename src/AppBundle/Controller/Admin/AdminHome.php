@@ -45,6 +45,9 @@ class AdminHome extends  Controller
         $emp = $em
             ->getRepository(Employee::class)
             ->find($id);
+        foreach ($emp->getPhotos() as $photo){
+            dump($photo);die;
+        }
         if ($emp->getDelCase() != 1 || $emp==null)
         {
             $form = $this->createForm(EmployeeForm::class,$emp);

@@ -146,6 +146,7 @@ class EmployeeController extends Controller
         $emp = $em
             ->getRepository(Employee::class)
             ->find($employee->getId());
+
         if ($emp->getDelCase() != 1)
         {
         $form = $this->createForm(EmployeeForm::class,$employee);
