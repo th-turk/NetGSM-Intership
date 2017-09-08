@@ -89,6 +89,11 @@ class EmployeeController extends Controller
         $emp = $em
             ->getRepository(Employee::class)
             ->find($employee->getId());
+
+        $newProfilePhoto = $em
+            ->getRepository(ProfilePhoto::class)
+            ->findOneBy(["employee"=>$employee->getId()]);
+
         if ($emp->getDelCase() != 1)
         {
             $editEmployee = new Employee();
@@ -97,14 +102,17 @@ class EmployeeController extends Controller
 
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                $tempPhoto = $editEmployee->getPhotoName();
 
-                $editEmployee->upload();
+                $tempPhoto = $newProfilePhoto->getName();
+
+                $newProfilePhoto->setPhoto($editEmployee->getPhoto());
+                $newProfilePhoto->upload();
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($editEmployee);
+                $em ->persist($newProfilePhoto);
                 $em->flush();
 
-                unlink($employee->getUploadRoot() . "/" . $tempPhoto);
+                unlink($newProfilePhoto->getUploadRoot() . "/" . $tempPhoto);
 
                 $this->addFlash("success", "Employee Edited Successfully ");
                 return $this->redirectToRoute("all_employees");
