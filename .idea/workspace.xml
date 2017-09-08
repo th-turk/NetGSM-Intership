@@ -35,13 +35,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/src/AppBundle/Security/LoginFormAuthenticator.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/src/AppBundle/Service/MarkDownTransformer.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/src/AppBundle/Twig/MarkDownExtension.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/profile_photos/f97bf094e11ad25da06d76b6897cd123-IMG_7847.JPG" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/main/employee_tracking.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/main/employee_tracking.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/MainController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/MainController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Employee.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Employee.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Status.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Status.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/LoginPhotoType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/LoginPhotoType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/AppKernel.php" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/AppKernel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/Resources/views/genus/show.html.twig" afterPath="$PROJECT_DIR$/../../knp_symfony/aqua_note/app/Resources/views/genus/show.html.twig" />
@@ -72,23 +67,26 @@
       <file leaf-file-name="EmployeeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="436">
+              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+              <folding>
+                <element signature="e#5020#5031#1#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/MainController.php">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="89" column="47" lean-forward="false" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+            <state relative-caret-position="441">
+              <caret line="63" column="92" lean-forward="false" selection-start-line="63" selection-start-column="92" selection-end-line="63" selection-end-column="92" />
               <folding>
-                <element signature="e#127#157#0#PHP" expanded="true" />
-                <element signature="e#2640#2650#1#PHP" expanded="true" />
-                <element signature="e#2812#2822#1#PHP" expanded="true" />
-                <element signature="e#2885#2907#0#PHP" expanded="true" />
+                <element signature="e#13#34#0#Twig" expanded="true" />
+                <element signature="e#2450#2466#0#Twig" expanded="true" />
+                <element signature="e#2634#2650#0#Twig" expanded="true" />
+                <element signature="e#2744#2765#0#HTML" expanded="true" />
+                <element signature="e#2782#2797#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,7 +202,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/admin/homepage.html.twig" />
         <option value="$PROJECT_DIR$/web/js/admin/home.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/admin/widgets.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/admin/navbar.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/main/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/AdminHome.php" />
@@ -214,12 +211,13 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/ProfilePhoto.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/admin/employees/edit/form.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/admin/employees/details/form.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/main/employee_tracking.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/LoginPhotoType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Employee.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Status.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/MainController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig" />
       </list>
     </option>
   </component>
@@ -579,7 +577,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -606,6 +604,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -741,17 +743,18 @@
       <workItem from="1504513544221" duration="21451000" />
       <workItem from="1504592128521" duration="26949000" />
       <workItem from="1504699746935" duration="36583000" />
-      <workItem from="1504850095322" duration="6357000" />
+      <workItem from="1504850095322" duration="7389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="317850000" />
+    <option name="totallyTimeSpent" value="318882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -890,13 +893,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/uploads/profile_photos/dbfb3a9fa29946832b6d890649f36e4e-IMG_7831.PNG" />
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/employees/details/details.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1039,14 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="112" column="29" lean-forward="false" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Photos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1089,12 +1077,36 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/MainController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
-          <caret line="89" column="47" lean-forward="false" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+          <caret line="65" column="49" lean-forward="true" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
           <folding>
             <element signature="e#127#157#0#PHP" expanded="true" />
             <element signature="e#2640#2650#1#PHP" expanded="true" />
             <element signature="e#2812#2822#1#PHP" expanded="true" />
             <element signature="e#2885#2907#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/EmployeeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <element signature="e#5020#5031#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin/users/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="63" column="92" lean-forward="false" selection-start-line="63" selection-start-column="92" selection-end-line="63" selection-end-column="92" />
+          <folding>
+            <element signature="e#13#34#0#Twig" expanded="true" />
+            <element signature="e#2450#2466#0#Twig" expanded="true" />
+            <element signature="e#2634#2650#0#Twig" expanded="true" />
+            <element signature="e#2744#2765#0#HTML" expanded="true" />
+            <element signature="e#2782#2797#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>

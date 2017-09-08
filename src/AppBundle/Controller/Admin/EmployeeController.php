@@ -86,15 +86,11 @@ class EmployeeController extends Controller
     public function editAction(Request $request,Employee $employee)
     {
         $em = $this->getDoctrine()->getManager();
-        $emp = $em
-            ->getRepository(Employee::class)
-            ->find($employee->getId());
-
         $newProfilePhoto = $em
             ->getRepository(ProfilePhoto::class)
             ->findOneBy(["employee"=>$employee->getId()]);
 
-        if ($emp->getDelCase() != 1)
+        if ($employee->getDelCase() != 1)
         {
             $editEmployee = new Employee();
             $editEmployee = $employee;
@@ -150,16 +146,31 @@ class EmployeeController extends Controller
         return $this->redirect($this->generateUrl('all_employees'));
     }
     /**
+     * @Route("/Employees/{id}/reload",name="employee_reload")
+     */
+    public function loadAgainAction( $id)
+    {
+
+        $something = $this->getDoctrine()
+            ->getRepository('AppBundle:Employee')
+            ->find($id);
+        $something->setDelCase("0");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($something);
+        $em->flush();
+
+        $this->addFlash("success","Employee Reloaded ");
+
+        return $this->redirect($this->generateUrl('all_users'));
+    }
+
+    /**
      * @Route("/Employees/{id}/details",name="employee_details")
      */
     public function detailsAction(Request $request,Employee $employee)
     {
-        $em = $this->getDoctrine()->getManager();
-        $emp = $em
-            ->getRepository(Employee::class)
-            ->find($employee->getId());
-
-        if ($emp->getDelCase() != 1)
+        if ($employee->getDelCase() != 1)
         {
         $form = $this->createForm(EmployeeForm::class,$employee);
 
