@@ -160,19 +160,6 @@
 
     {{ form_end(employeeForm,{"render_rest": false}) }}
 
-
-    <!-- Photos From Login -->
-    <div class="col-md-12">
-        <div class="row">
-            {% for photo in  employee.photos %}
-                <div class="col-md-4">
-                    <img src="{{ asset('uploads/photos/')~employee.id~"/"~photo.name }}" alt="">
-                </div>
-            {% endfor %}
-        </div>
-
-    </div>
-    <!-- Photos From Login -->
     <div class="form-group" style="margin-top: -5%">
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4"><br>
@@ -186,4 +173,18 @@
         </div>
 
     </div>
+
+
+    <!-- Photos From Login -->
+    <div class="col-md-12">
+        <div class="row">
+            {% for photo in  employee.photos %}
+                <div class="col-md-3">
+                    <img src="{{ asset('uploads/photos/')~employee.id~"/"~photo.name }}" alt="">
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <!-- Photos From Login -->
 {% endblock %}

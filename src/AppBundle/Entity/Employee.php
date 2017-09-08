@@ -73,7 +73,7 @@ class Employee
     private $photos;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ProfilePhoto",mappedBy="employee")
      */
     private $photoName;
 
@@ -215,43 +215,6 @@ class Employee
     public function setPhoto(UploadedFile $photo)
     {
         $this->photo = $photo;
-    }
-
-    public function getUploadDir()
-    {
-        return "uploads/profile_photos";
-    }
-
-    public function getAbsoluteRoot()
-    {
-        return $this->getUploadRoot().$this->photoName;
-    }
-
-    public function getWebPath()
-    {
-        return $this->getUploadDir()."/".$this->photoName;
-    }
-
-    public function getUploadRoot()
-    {
-        return __DIR__."/../../../web/".$this->getUploadDir()."/";
-    }
-    public function upload()
-    {
-        if ($this->photo===null){
-            return;
-        }
-        $this->photoName = md5(uniqid())."-".$this->photo->getClientOriginalName();
-
-
-        if (!is_dir($this->getUploadRoot()))
-        {
-            mkdir($this->getUploadRoot(),"0777",true);
-        }
-
-        $this->photo->move($this->getUploadRoot(),$this->photoName);
-        unset($this->photo);
-
     }
 
 

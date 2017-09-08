@@ -54,16 +54,20 @@ class EmployeeController extends Controller
      */
     public function newAction(Request $request)
     {
-
         $newEmployee = new Employee();
+        $newProfilePhoto = new ProfilePhoto();
         $form = $this->createForm(EmployeeForm::class,$newEmployee);
         $form->handleRequest($request);
 
        if ($form->isSubmitted() && $form->isValid())
        {
-           $newEmployee->upload();
+
+           $newProfilePhoto->setPhoto($newEmployee->getPhoto());
+           $newProfilePhoto->upload();
+           $newProfilePhoto->setEmployee($newEmployee);
            $em = $this->getDoctrine()->getManager();
            $em ->persist($newEmployee);
+           $em ->persist($newProfilePhoto);
            $em->flush();
 
            $this->addFlash("success","Employee Added Successfully ");

@@ -25,7 +25,7 @@ class ProfilePhoto
      */
     private  $id;
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Employee")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Employee" , inversedBy="photoName")
      * @ORM\JoinColumn(name="employee",referencedColumnName="id")
      */
     private $employee;
@@ -35,9 +35,6 @@ class ProfilePhoto
      */
     private $name;
 
-    /**
-     * @var string
-     */
     private $photo;
 
 
@@ -107,7 +104,7 @@ class ProfilePhoto
         if ($this->photo===null){
             return;
         }
-        $this->name = $this->photo->getClientOriginalName();
+        $this->name = md5(uniqid())."-".$this->photo->getClientOriginalName();
 
 
         if (!is_dir($this->getUploadRoot()))
