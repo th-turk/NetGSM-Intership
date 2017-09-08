@@ -51,6 +51,7 @@ class MainController extends Controller
                     }
 
                     $upload_dir = $this->getUploadRoot($employee);
+
                     $photo  =new Photos();
                     $status =new Status();
                     $img = $hiddenform->get("textArea")->getData();
@@ -61,11 +62,12 @@ class MainController extends Controller
                     $file = $upload_dir . mktime() . ".png";
 
                     $photo->setName(str_replace($upload_dir,"",$file));
-                    $photo->setEmployee($findedEmployee);
+                    $photo->setStatus($status);
 
                     $status->setType($loginType);
                     $status->setEmployee($findedEmployee);
                     $status->setDate($this->getTime());
+
                     $em = $this->getDoctrine()->getManager();
                     $em ->persist($photo);
                     $em->persist($status);

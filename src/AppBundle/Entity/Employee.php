@@ -67,10 +67,6 @@ class Employee
      * @ORM\JoinColumn(name="department_id",referencedColumnName="id",nullable=true)
      */
     private $department;
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photos" ,mappedBy="employee")
-     */
-    private $photos;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Status" ,mappedBy="employee")
@@ -191,14 +187,6 @@ class Employee
     public function setDepartment(Department $department)
     {
         $this->department = $department;
-    }
-
-    /**
-     * @return ArrayCollection |Photos[]
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
     }
 
     /**

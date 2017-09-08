@@ -172,9 +172,28 @@
 <!-- Photos From Login -->
 <div class="col-md-12">
     <div class="row">
-        {% for photo in  employee.photos %}
-            <div class="col-sm-4" >
-                <img style="border:#3a3a3a 1px solid" class="img-responsive"  src="{{ asset('uploads/photos/')~employee.id~"/"~photo.name }}" alt="">
+        {% for status in  employee.status %}
+
+            <div class="col-sm-4"  style="border:#3a3a3a 1px solid;margin: 0.5%;padding: 0;" >
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="type">Type:</label>
+                        {% if status.type == 1 %}
+                            <span id="type" class="text-success "><b>Login</b></span>
+                        {% else %}
+                            <span id="type" class="text-danger"><b>Logout</b></span>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="date">Date:</label>
+                        <span id="date" class="text-info">{{ status.date |date("d/m/y h:m:s") }}</span>
+                    </div>
+                </div>
+                <img  class="img-responsive"  src="{{ asset('uploads/photos/')~employee.id~"/"~status.photo }}" alt="">
             </div>
         {% endfor %}
     </div>

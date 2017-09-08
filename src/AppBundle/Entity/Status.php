@@ -24,7 +24,7 @@ class Status
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee",inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee",inversedBy="status")
      * @ORM\JoinColumn(nullable=true)
      */
     private $employee;
@@ -36,6 +36,12 @@ class Status
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photos" ,mappedBy="status")
+     */
+    private $photo;
+
 
 
     public function getId()
@@ -79,6 +85,18 @@ class Status
     {
         $this->date = $date;
     }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
+
+
 
 
 }
