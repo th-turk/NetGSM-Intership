@@ -24,7 +24,8 @@ class Status
      */
     private $id;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee",inversedBy="photos")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $employee;
     /**
@@ -32,13 +33,9 @@ class Status
      */
     private $type;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $photo;
 
 
     public function getId()
@@ -54,7 +51,7 @@ class Status
     }
 
 
-    public function setEmployee($employee)
+    public function setEmployee(Employee $employee)
     {
         $this->employee = $employee;
     }
@@ -84,14 +81,4 @@ class Status
     }
 
 
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-    }
 }

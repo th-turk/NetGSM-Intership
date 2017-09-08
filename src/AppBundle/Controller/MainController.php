@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Photos;
+use AppBundle\Entity\Status;
 use AppBundle\Form\LoginForm;
 use AppBundle\Form\LoginPhotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,6 +39,7 @@ class MainController extends Controller
         if ($hiddenform->isSubmitted() && $hiddenform->isValid())
         {
             $employee = $hiddenform->get("employee")->getData();
+            $loginType = $hiddenform->get("logintype")->getData();
 
             $findedEmployee=$this->employeeFind($employee);
 
@@ -49,7 +51,8 @@ class MainController extends Controller
                     }
 
                     $upload_dir = $this->getUploadRoot($employee);
-                    $photo=new Photos();
+                    $photo  =new Photos();
+                    $status =new Status();
                     $img = $hiddenform->get("textArea")->getData();
                     $img = str_replace('data:image/png;base64,', '', $img);
                     $img = str_replace(' ', '+', $img);
@@ -60,8 +63,12 @@ class MainController extends Controller
                     $photo->setName(str_replace($upload_dir,"",$file));
                     $photo->setEmployee($findedEmployee);
 
+                    $status->setType($loginType);
+                    $status->setEmployee($findedEmployee);
+                    $status->setDate($this->getTime());
                     $em = $this->getDoctrine()->getManager();
                     $em ->persist($photo);
+                    $em->persist($status);
                     $em->flush();
                     $success = file_put_contents($file, $data);
 
@@ -97,5 +104,10 @@ class MainController extends Controller
             ->getRepository(Employee::class)
             ->find($employee);
         return $employeeFind;
+    }
+
+    public function getTime()
+    {
+        return new \DateTime("now");
     }
 }

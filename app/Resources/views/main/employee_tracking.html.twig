@@ -27,7 +27,11 @@
     </div>
     <div class="col-md-3">
         <div class="well">
+
             {{ form_start(formHidden) }}
+            <div class="form-group">
+                {{ form_row(formHidden.logintype) }}
+            </div>
             <div class="form-group">
                 {{ form_row(formHidden.employee) }}
             </div>

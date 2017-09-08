@@ -73,6 +73,11 @@ class Employee
     private $photos;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Status" ,mappedBy="employee")
+     */
+    private $status;
+
+    /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\ProfilePhoto",mappedBy="employee")
      */
     private $photoName;
@@ -196,6 +201,13 @@ class Employee
         return $this->photos;
     }
 
+    /**
+     * @return ArrayCollection |Status[]
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     public function getPhotoName()
     {
