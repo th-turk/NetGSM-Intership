@@ -5,11 +5,8 @@
  * Date: 31.7.2017
  * Time: 21:33
  */
-
 // src/AppBundle/DataFixtures/ORM/LoadUserData.php
-
 namespace AppBundle\DataFixtures\ORM;
-
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -26,7 +23,6 @@ class LoadFixtures implements FixtureInterface
             ]
             );
     }
-
     public function department()
     {
         $genera =[

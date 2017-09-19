@@ -20,6 +20,7 @@ class LoginPhotoType extends AbstractType
     {
         $builder
             ->add("logintype",ChoiceType::class,[
+			"label"=>"Login Type",
                 "placeholder"=>"Choice A Type",
                 "choices"=>[
                     "Start Work"=>1,

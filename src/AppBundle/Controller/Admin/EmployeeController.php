@@ -28,10 +28,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class EmployeeController extends Controller
 {
-
-
     /**
-     * @Route("/Employees/page/{numb}",defaults={"numb"=1},name="all_employees")
+     * @Route("/Employees/page/{numb}",defaults={"numb"=1},name="all_employees" ,requirements={"numb":"\d+"})
      */
     public function listAction(Request $request,$numb)
     {
@@ -57,11 +55,10 @@ class EmployeeController extends Controller
         $newEmployee = new Employee();
         $newProfilePhoto = new ProfilePhoto();
         $form = $this->createForm(EmployeeForm::class,$newEmployee);
-        $form->handleRequest($request);
 
+        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid())
        {
-
            $newProfilePhoto->setPhoto($newEmployee->getPhoto());
            $newProfilePhoto->upload();
            $newProfilePhoto->setEmployee($newEmployee);
@@ -75,8 +72,6 @@ class EmployeeController extends Controller
        }
        return $this->render("admin/employees/new/new.html.twig",[
           "employeeForm" => $form->createView(),
-
-
        ]);
     }
 

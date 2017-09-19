@@ -29,6 +29,32 @@ use Symfony\Component\HttpFoundation\Response;
 class DegreeController extends Controller
 {
     /**
+     * @Route("/Degree/{id}/edit",name="edit_degree")
+     */
+    public function editAction(Request $request,Degree $degree)
+    {
+        $form = $this->createForm(DegreeForm::class,$degree);
+        try{
+            $form->handleRequest($request);
+            if ($form->isSubmitted() &&$form->isValid()){
+                $degree=$form->getData();
+                $em = $this->getDoctrine()->getManager();
+                $em ->persist($degree);
+                $em->flush();
+
+                $this->addFlash("success","Degree Edited Successfully ");
+                return $this->redirect($this->generateUrl("all_degrees"));
+            }
+        }
+        catch (Exception $exception){
+            return new Response($exception);
+        }
+        return $this->render("admin/degree/edit.html.twig",[
+            "degreeForm" => $form->createView()
+        ]);
+
+    }
+    /**
      * @Route("/Degree",name="all_degrees")
      */
     public function showAction(Request $request)
@@ -58,33 +84,6 @@ class DegreeController extends Controller
 
     }
 
-    /**
-     * @Route("/Degree/{id}/edit",name="edit_degree")
-     */
-    public function editAction(Request $request,Degree $degree)
-    {
-        $form = $this->createForm(DegreeForm::class,$degree);
-        try{
-            $form->handleRequest($request);
-            if ($form->isSubmitted() &&$form->isValid()){
-                $degree=$form->getData();
-                $em = $this->getDoctrine()->getManager();
-                $em ->persist($degree);
-                $em->flush();
-
-                $this->addFlash("success","Degree Edited Successfully ");
-                return $this->redirect($this->generateUrl("all_degrees"));
-            }
-        }
-        catch (Exception $exception){
-            return new Response($exception);
-        }
-
-        return $this->render("admin/degree/edit.html.twig",[
-            "degreeForm" => $form->createView()
-        ]);
-
-    }
     /**
      * @Route("/Degree/{id}/delete",name="delete_degree")
      */

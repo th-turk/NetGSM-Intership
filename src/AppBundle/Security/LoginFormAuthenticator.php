@@ -70,13 +70,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
                 $request->getPathInfo()== "/register"
                 &&
                 $request->isMethod("POST")
-            )
-        ;
+            );
         if(!$isLoginSubmit){
             return;
         }
+        $loginForm = $this->formFactory
+            ->create(LoginForm::class);
 
-        $loginForm = $this->formFactory->create(LoginForm::class);
         $loginForm->handleRequest($request);
         $data = $loginForm->getData();
         $request->getSession()->set(
@@ -84,7 +84,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             $data["_username"]
         );
         return $data;
-        
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)

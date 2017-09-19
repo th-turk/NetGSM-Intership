@@ -46,11 +46,7 @@ class DepartmentController extends  Controller
             $em->flush();
             $this->addFlash("success"," New DepartmentForm Added ");
             return $this->redirect($this->generateUrl("all_departments"));
-
-
         }
-
-
         return $this->render("admin/department/index.html.twig",[
             "formDepartment"=>$form->createView(),
             "departments"=>$departments

@@ -41,14 +41,13 @@ class AdminHome extends  Controller
      */
     public function profileAction($id)
     {
+        $emp = new Employee();
         $em = $this->getDoctrine()->getManager();
         $emp = $em
             ->getRepository(Employee::class)
             ->find($id);
-        foreach ($emp->getPhotos() as $photo){
-            dump($photo);die;
-        }
-        if ($emp->getDelCase() != 1 || $emp==null)
+
+        if ($emp->getDelCase() != 1 && $emp==null)
         {
             $form = $this->createForm(EmployeeForm::class,$emp);
 

@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
- * @UniqueEntity(fields={"usernamee"},message="It looks like you already have an account")
+ * @UniqueEntity(fields={"username"},message="It looks like you already have an account")
  */
 class Users implements UserInterface
 {
@@ -30,8 +30,9 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Write an Username")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9_]{2,30}$/",message="Write a Username with Letters")
      */
-    private $usernamee;
+    private $username;
     /**
      * @ORM\Column(type="string")
      */
@@ -61,7 +62,7 @@ class Users implements UserInterface
 
     public function getUsername()
     {
-        return $this->usernamee;
+        return $this->username;
     }
 
     public function getRoles()
@@ -91,7 +92,7 @@ class Users implements UserInterface
 
     public function setUsername($userName)
     {
-        $this->usernamee = $userName;
+        $this->username = $userName;
     }
 
     public function setPassword($password)
@@ -113,11 +114,6 @@ class Users implements UserInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
-    }
-
-    public function getUsernamee()
-    {
-        return $this->usernamee;
     }
 
     /**

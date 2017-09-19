@@ -8,12 +8,10 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EmplooyeeRepository")
  * @ORM\Table(name="employee")
@@ -26,6 +24,11 @@ class Employee
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Status" ,mappedBy="employee")
+     */
+    private $status;
     /**
      * @ORM\Column(type="string")
      */
@@ -68,10 +71,6 @@ class Employee
      */
     private $department;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Status" ,mappedBy="employee")
-     */
-    private $status;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\ProfilePhoto",mappedBy="employee")

@@ -12,15 +12,15 @@ class DegreeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("name",TextType::class,[
-
-        ]);
+        $builder->add(
+            "name",null,[]
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            "data_class"=>"AppBundle\Entity\Degree",
+            "data_class"=>Degree::class,
             "attr" =>[
                 "class" =>"well form-horizontal"
             ]
